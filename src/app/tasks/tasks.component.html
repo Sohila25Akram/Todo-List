@@ -1,0 +1,35 @@
+<!-- @if (name){
+<p>{{ name }}</p>
+}@else{
+<p>Please select a user</p>
+}
+
+<h1>Tasks</h1>
+<ul>
+  @for (task of userTasks; track task.id){
+
+  <li>
+    <app-task [task]="task" />
+  </li>
+  }
+</ul> -->
+
+@if (isAddingTask){
+<app-new-task (cancel)="onCancelAddingTask()" (add)="onAddTask($event)" />
+}
+
+<section id="tasks">
+  <header>
+    <h2>{{ name }} 's Tasks</h2>
+    <menu>
+      <button (click)="onStartAddingTask()">Add Task</button>
+    </menu>
+  </header>
+  <ul>
+    @for (task of userTasks; track task.id){
+    <li>
+      <app-task [task]="task" (complete)="onCompleteTask($event)" />
+    </li>
+    }
+  </ul>
+</section>
